@@ -1,0 +1,42 @@
+# ==================================
+# ROOT .gitignore
+# ==================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# IDEs
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# Archives (except in Releases/)
+*.zip
+*.rar
+*.7z
+!Releases/*.zip
+
+# Build outputs (will be in Releases/)
+*.aar
+*.unitypackage
+!Releases/*.aar
+!Releases/*.unitypackage
