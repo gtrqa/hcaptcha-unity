@@ -1,0 +1,54 @@
+﻿# ==================================
+# ANDROID .gitignore
+# ==================================
+
+# Built application files
+*.apk
+*.aar
+*.ap_
+*.aab
+
+# Files for the ART/Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+out/
+release/
+
+# Gradle files
+.gradle/
+build/
+*/build/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# IntelliJ IDEA
+*.iml
+.idea/
+
+# Android Studio
+.navigation/
+captures/
+output.json
+.externalNativeBuild
+.cxx/
+
+# Keystore files
+*.jks
+*.keystore
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# =====================================
+# CRITICAL: Unity classes.jar
+# User must provide their own!
+# =====================================
+**/libs/classes.jar
