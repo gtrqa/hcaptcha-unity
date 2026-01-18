@@ -2,8 +2,8 @@
 
 Unity integration for hCaptcha on Android.
 
-<p align="center">
-  <img src="demo.gif" alt="hCaptcha Demo" width="30%"/>
+<p align="left">
+  <img src="../demo.gif" alt="hCaptcha Demo" width="30%"/>
 </p>
 
 ## Installation
