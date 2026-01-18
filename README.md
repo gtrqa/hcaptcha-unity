@@ -56,6 +56,10 @@ After importing, Unity **must** use the included Gradle templates:
 2. Select the prefab in Inspector
 3. Paste your **Site Key**
 4. (Optional) Drag `Prefabs/TestUI` for instant test button
+5. **Replace Unity's generated templates with package templates:**
+   - Copy `Assets/HCaptcha/Runtime/Plugins/Android/mainTemplate.gradle` → `Assets/Plugins/Android/mainTemplate.gradle`
+   - Copy `Assets/HCaptcha/Runtime/Plugins/Android/settingsTemplate.gradle` → `Assets/Plugins/Android/settingsTemplate.gradle`
+   - Overwrite when prompted
 
 ### 4. Use in Code
 ```csharp
@@ -129,7 +133,7 @@ HCaptcha/
 
 ### Unity 6.x (2023.3+) - ✅ Fully Supported
 - Pre-built AAR works out of the box
-- Enable Custom Gradle Templates and build
+- Enable Custom Gradle Templates and replace with package templates (step 5 above)
 
 ### Unity 2022.3 LTS - ⚠️ Requires Rebuild
 The included AAR is compiled with Java 17. Unity 2022.3 uses Java 11, causing build errors.
@@ -175,15 +179,15 @@ See [Android/README.md](Android/README.md) for build instructions.
 - Set your site key in HCaptchaManager Inspector
 
 **Gradle build fails with "keepUnitySymbols.gradle does not exist"**
-- Enable Custom Gradle Templates in Player Settings (see setup above)
+- Enable Custom Gradle Templates in Player Settings (see setup step 3)
+- Replace Unity's templates with package templates (see setup step 5)
 
 **"D8: java.lang.NullPointerException" or class version errors**
 - Unity 2022.3: AAR needs Java 11 rebuild (see compatibility section above)
-- Unity 6+: Should work without issues
+- Unity 6+: Make sure you replaced templates (step 5)
 
 **"compileSdkVersion is not specified"**
-- Ensure Custom Main Gradle Template is enabled
-- Package auto-configures it - if overridden, re-import package
+- Replace Unity's generated templates with package templates (setup step 5)
 
 ## 📖 API Reference
 
