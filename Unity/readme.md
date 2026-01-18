@@ -22,15 +22,17 @@ After importing, Unity **must** use the included Gradle templates:
 2. **Enable BOTH:**
    - ✓ Custom Main Gradle Template
    - ✓ Custom Gradle Settings Template
+3. **Replace Unity's generated templates with package templates:**
+   - Copy `Assets/HCaptcha/Runtime/Plugins/Android/mainTemplate.gradle` → `Assets/Plugins/Android/mainTemplate.gradle`
+   - Copy `Assets/HCaptcha/Runtime/Plugins/Android/settingsTemplate.gradle` → `Assets/Plugins/Android/settingsTemplate.gradle`
+   - Overwrite when prompted
 
-**The package will auto-configure these templates** with JitPack and hCaptcha dependencies.
-
-> ⚡ **Without these, the build will fail!** The templates are required for AAR resolution.
+> ⚡ **Without these exact templates, the build will fail!** Unity's auto-generated templates don't include hCaptcha dependencies.
 
 ## Unity Version Compatibility
 
 ### Unity 6.x (2023.3+) ✅
-Works out of the box with included AAR.
+Works out of the box with included AAR (don't forget to replace templates above!).
 
 ### Unity 2022.3 LTS ⚠️
 Included AAR uses Java 17. Unity 2022.3 uses Java 11.
@@ -86,8 +88,8 @@ public class LoginManager : MonoBehaviour
 - **Prefabs/HCaptchaManager** - Main captcha component
 - **Prefabs/TestUI** - Ready-to-use test button
 - **Samples/TestHCaptcha.cs** - OnGUI example script
-- **Plugins/Android/mainTemplate.gradle** - Auto-configured dependencies
-- **Plugins/Android/settingsTemplate.gradle** - JitPack repository
+- **Plugins/Android/mainTemplate.gradle** - Pre-configured dependencies (must replace Unity's!)
+- **Plugins/Android/settingsTemplate.gradle** - JitPack repository (must replace Unity's!)
 - **Plugins/Android/unithhcapt-lib.aar** - Pre-compiled Android library
 
 ## Requirements
@@ -96,7 +98,7 @@ public class LoginManager : MonoBehaviour
 - Android platform
 - Min SDK 22 (Android 5.1)
 - Target SDK 34 (Android 14)
-- **Custom Gradle Templates enabled** (see setup above)
+- **Custom Gradle Templates enabled AND replaced** (see setup above)
 
 ## Testing
 
@@ -104,7 +106,7 @@ public class LoginManager : MonoBehaviour
 Press Play → "Platform not supported" (expected - Android only)
 
 ### On Device
-1. Build APK with Gradle templates enabled
+1. Build APK with Gradle templates enabled and replaced
 2. Install on Android device
 3. Press verify button
 4. Complete captcha
@@ -113,19 +115,20 @@ Press Play → "Platform not supported" (expected - Android only)
 ## Troubleshooting
 
 **Gradle build fails with "keepUnitySymbols.gradle does not exist"**
-- Enable Custom Gradle Templates in Player Settings (see setup above)
+- Enable Custom Gradle Templates in Player Settings
+- Replace Unity's templates with package templates (see setup step 3)
 
 **"D8: NullPointerException" or Java class version errors**
 - Unity 2022.3: Rebuild AAR with Java 11 (see compatibility section)
-- Unity 6+: Should work without issues
+- Unity 6+: Make sure you replaced the gradle templates
 
 **"compileSdkVersion is not specified"**
-- Ensure Custom Main Gradle Template is enabled
-- Package auto-configures it - if overridden, re-import package
+- You must replace Unity's generated templates with package templates (setup step 3)
+- Unity's auto-generated templates don't have the required configuration
 
 **"Platform not supported" on device**
 - Check that AAR is in `Assets/Plugins/Android/`
-- Verify Gradle templates are enabled
+- Verify Gradle templates were replaced correctly
 - Re-import package with "Include dependencies" checked
 
 ## Links
