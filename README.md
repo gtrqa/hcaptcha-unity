@@ -7,7 +7,7 @@
 
 Simple and powerful **hCaptcha** integration for **Unity Android** games and apps.
 
-![hCaptcha Demo](docs/demo.gif)
+![hCaptcha Demo](demo.gif)
 
 ## ✨ Features
 
