@@ -7,8 +7,6 @@
 
 Simple and powerful **hCaptcha** integration for **Unity Android** games and apps.
 
-![hCaptcha Demo](https://via.placeholder.com/800x400?text=Demo+GIF+Coming+Soon)
-
 ## ✨ Features
 
 - 🎮 **Drop-in Integration** - Import and use in minutes
@@ -16,7 +14,7 @@ Simple and powerful **hCaptcha** integration for **Unity Android** games and app
 - 🔧 **Automatic Setup** - Gradle configured automatically
 - 📦 **Pre-built AAR** - No Android Studio required
 - 🎯 **Simple API** - Easy C# interface
-- 📚 **Examples Included** - OnGUI and Canvas UI samples
+- 🎨 **Two UI Examples** - OnGUI test scene + Canvas-ready prefab
 - 🆓 **MIT Licensed** - Free for commercial use
 - 🌐 **Open Source** - Full source code available
 
@@ -24,13 +22,10 @@ Simple and powerful **hCaptcha** integration for **Unity Android** games and app
 
 ### 1. Installation
 
-**Option A: Asset Store (Coming Soon)**
-> One-click install with automatic updates and support
-
-**Option B: Manual Install**
-1. Download the latest [Release](../../releases)
-2. Import `.unitypackage` into your Unity project
-3. Done! Gradle templates are configured automatically
+Download the latest [HCaptcha-Unity.unitypackage](../../releases/latest) and import into Unity:
+```
+Assets → Import Package → Custom Package → Select downloaded file
+```
 
 ### 2. Get hCaptcha Site Key
 
@@ -40,26 +35,33 @@ Simple and powerful **hCaptcha** integration for **Unity Android** games and app
 
 ### 3. Setup in Unity
 
+**Option A: Using Prefab (Recommended)**
 1. Drag `Prefabs/HCaptchaManager` into your scene
 2. Select the prefab in Inspector
 3. Paste your **Site Key**
+4. (Optional) Drag `Prefabs/TestUI` for instant test button
+
+**Option B: Manual Setup**
+1. Create empty GameObject named "check"
+2. Add component `HCaptchaManager`
+3. Set Site Key in Inspector
 
 ### 4. Use in Code
 ```csharp
 using UnityEngine;
+using HCaptcha;
 
 public class LoginManager : MonoBehaviour
 {
     void Start()
     {
-        var captcha = FindObjectOfType<HCaptchaManager>();
-        captcha.OnSuccess += OnCaptchaSuccess;
-        captcha.OnFailure += OnCaptchaFailure;
+        HCaptchaManager.Instance.OnSuccess.AddListener(OnCaptchaSuccess);
+        HCaptchaManager.Instance.OnFailure.AddListener(OnCaptchaFailure);
     }
 
-    public void VerifyUser()
+    public void OnLoginButtonClick()
     {
-        FindObjectOfType<HCaptchaManager>().Verify();
+        HCaptchaManager.Instance.Verify();
     }
 
     void OnCaptchaSuccess(string token)
@@ -72,9 +74,33 @@ public class LoginManager : MonoBehaviour
     void OnCaptchaFailure(string error)
     {
         Debug.LogError("✗ Captcha failed: " + error);
-        ShowError("Please try again");
+        ShowErrorMessage("Verification failed. Please try again.");
     }
 }
+```
+
+**Or connect directly in Unity UI:**
+1. Select your Button
+2. OnClick() → Drag `HCaptchaManager` prefab
+3. Select function: `HCaptchaManager → Verify()`
+
+## 📦 What's Included
+```
+HCaptcha/
+├── Runtime/
+│   ├── Prefabs/
+│   │   ├── HCaptchaManager.prefab    # Main captcha handler
+│   │   └── TestUI.prefab              # Ready-to-use test button
+│   ├── Scripts/
+│   │   ├── HCaptchaManager.cs         # High-level API
+│   │   └── HCaptchaUnityBridge.cs     # Android bridge
+│   └── Plugins/Android/
+│       ├── unithhcapt-lib.aar         # Pre-compiled library
+│       └── *.gradle                   # Auto-configured
+├── Editor/
+│   └── HCaptchaSetup.cs               # First-time setup helper
+└── Samples/
+    └── TestHCaptcha.cs                # Example OnGUI test scene
 ```
 
 ## 📋 Requirements
@@ -86,12 +112,17 @@ public class LoginManager : MonoBehaviour
 | **Min SDK** | API 22 (Android 5.1) |
 | **Target SDK** | API 34 (Android 14) |
 
-## 📁 Project Structure
-```
-hcaptcha-unity/
-├── Android/          # Android library source (AAR)
-└── Unity/            # Unity package (coming soon)
-```
+## 🧪 Testing
+
+### In Unity Editor
+Press Play → You'll see "Platform not supported" (expected - hCaptcha works only on Android)
+
+### On Android Device
+1. Build APK: `File → Build Settings → Android → Build`
+2. Install on device
+3. Run app and press verify button
+4. Complete captcha
+5. Check logcat for success token
 
 ## 🔧 Building from Source
 
@@ -99,27 +130,52 @@ Want to customize the Android library?
 
 See [Android/README.md](Android/README.md) for build instructions.
 
-## 📖 Documentation
+## 🐛 Troubleshooting
 
-- [Quick Start Guide](docs/QUICKSTART.md) _(coming soon)_
-- [API Reference](docs/API.md) _(coming soon)_
-- [Troubleshooting](docs/TROUBLESHOOTING.md) _(coming soon)_
+**"Platform not supported"**
+- Normal in Unity Editor - hCaptcha only works on Android devices
+
+**"Site Key not configured"**
+- Set your site key in HCaptchaManager Inspector
+
+**Gradle build fails**
+- Custom templates are auto-configured, but if issues persist:
+  - `Edit → Project Settings → Player → Publishing Settings`
+  - Enable both Custom Gradle Templates
+
+**AAR not found**
+- Re-import package ensuring "Include dependencies" is checked
+
+## 📖 API Reference
+
+### HCaptchaManager
+
+**Methods:**
+- `Verify()` - Start captcha verification
+- `Reset()` - Reset captcha state
+
+**Events:**
+- `OnSuccess(string token)` - Fired when user passes captcha
+- `OnFailure(string error)` - Fired on error or user cancellation
+
+**Properties:**
+- `Instance` - Singleton instance (auto-created from prefab)
 
 ## 🤝 Contributing
 
-Contributions are welcome!
+Contributions welcome!
 
 1. Fork the repo
-2. Create a feature branch (`git checkout -b feature/amazing`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing`)
-5. Open a Pull Request
+2. Create feature branch: `git checkout -b feature/amazing`
+3. Commit changes: `git commit -m 'Add amazing feature'`
+4. Push to branch: `git push origin feature/amazing`
+5. Open Pull Request
 
 ## 📝 License
 
-MIT License - see [LICENSE](LICENSE) for details.
+MIT License - see [LICENSE](LICENSE)
 
-This project uses [hCaptcha Android SDK](https://github.com/hCaptcha/hcaptcha-android-sdk) which is also MIT licensed.
+This project uses [hCaptcha Android SDK](https://github.com/hCaptcha/hcaptcha-android-sdk) (also MIT licensed).
 
 ## 🙏 Credits
 
@@ -128,9 +184,9 @@ This project uses [hCaptcha Android SDK](https://github.com/hCaptcha/hcaptcha-an
 
 ## 📧 Support
 
-- 🐛 [Report a Bug](../../issues/new?labels=bug)
-- 💡 [Request a Feature](../../issues/new?labels=enhancement)
-- 💬 [Ask a Question](../../discussions)
+- 🐛 [Report Bug](../../issues/new?labels=bug)
+- 💡 [Request Feature](../../issues/new?labels=enhancement)
+- 💬 [Discussions](../../discussions)
 
 ---
 
