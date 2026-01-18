@@ -1,19 +1,9 @@
 ﻿{
   "name": "com.gtrqa.hcaptcha",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "displayName": "hCaptcha for Unity",
   "description": "Easy hCaptcha integration for Unity Android apps.",
   "unity": "2022.3",
-  "author": {
-    "name": "gtrqa",
-    "email": "denxdd1993@gmail.com",
-    "url": "https://github.com/gtrqa"
-  },
-  "samples": [
-    {
-      "displayName": "Basic Usage",
-      "description": "Example scene with hCaptcha integration",
-      "path": "Samples~/BasicUsage"
-    }
-  ]
+  "hideInEditor": false,
+  "type": "library"
 }
