@@ -1,6 +1,6 @@
 # 🔒 hCaptcha for Unity
 
-[![Unity](https://img.shields.io/badge/Unity-2022.3%2B-black?logo=unity)](https://unity.com/)
+[![Unity](https://img.shields.io/badge/Unity-2023.3%2B-black?logo=unity)](https://unity.com/)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Android-brightgreen)](https://developer.android.com/)
 [![hCaptcha](https://img.shields.io/badge/hCaptcha-SDK%204.4.0-blue)](https://www.hcaptcha.com/)
@@ -117,7 +117,7 @@ HCaptcha/
 
 | Requirement | Version |
 |-------------|---------|
-| **Unity** | 2022.3 LTS or newer |
+| **Unity** | 2023.3 LTS or newer |
 | **Platform** | Android only |
 | **Min SDK** | API 22 (Android 5.1) |
 | **Target SDK** | API 34 (Android 14) |
