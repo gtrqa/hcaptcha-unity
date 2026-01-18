@@ -1,26 +1,19 @@
-{
+﻿{
   "name": "com.gtrqa.hcaptcha",
   "version": "1.0.0",
   "displayName": "hCaptcha for Unity",
-  "description": "Easy hCaptcha integration for Unity Android apps. Drop-in solution with automatic gradle setup.",
+  "description": "Easy hCaptcha integration for Unity Android apps.",
   "unity": "2022.3",
-  "unityRelease": "0f1",
-  "documentationUrl": "https://github.com/gtrqa/hcaptcha-unity",
-  "changelogUrl": "https://github.com/gtrqa/hcaptcha-unity/blob/main/CHANGELOG.md",
-  "licensesUrl": "https://github.com/gtrqa/hcaptcha-unity/blob/main/LICENSE",
-  "dependencies": {},
-  "keywords": [
-    "hcaptcha",
-    "captcha",
-    "android",
-    "security",
-    "bot-protection",
-    "unity",
-    "plugin"
-  ],
   "author": {
     "name": "gtrqa",
     "email": "denxdd1993@gmail.com",
     "url": "https://github.com/gtrqa"
-  }
+  },
+  "samples": [
+    {
+      "displayName": "Basic Usage",
+      "description": "Example scene with hCaptcha integration",
+      "path": "Samples~/BasicUsage"
+    }
+  ]
 }
